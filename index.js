@@ -5,7 +5,7 @@ const manager = require('./lib/Manager');
 const engineer = require('./lib/Engineer');
 const intern = require('./lib/Intern');
 
-
+const teamMembersArr=[];
 
 const prompt = () => { inquirer
 
@@ -13,25 +13,25 @@ const prompt = () => { inquirer
         {
             type: 'input',
             message: 'What is the Manager\'\ s name?',
-            name:'managerName'
+            name:'name'
         },
         {
             type: 'input',
             message: 'What is the Manager\'s employee ID?',
-            name:'managerID'
+            name:'id'
         },
         {
             type: 'input',
             message: 'What is the Manager\'s email address?',
-            name:'managerEmail'
+            name:'email'
         },
         {
             type: 'input',
             message: 'What is the Manager\'s office number?',
-            name:'managerOffice'
+            name:'officeNumber'
         },
 
-    ]).then((response) => {
+    ]).then((response, ) => {
         console.log(response);
 
     });
@@ -42,10 +42,10 @@ const prompt = () => { inquirer
 
 }
 
-function starterHTML(){ 
-    return `
+function renderHTML(role){ 
+   const html = `
     
-    <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -79,28 +79,32 @@ function starterHTML(){
       </nav>
     </header>
     <div class="container-fluid mx-auto">
-        <div class="row employeeRow">    
-            <div class="col-md-3 mx-auto card employeeCard border bg-custom">
-                <div class="card-header">
-                    <h3>Jared</h3>
-                    <br>
-                    <div class="managerIcon"></div>
-                    <h4>Manager</h4>
-                </div>
-                <p class="card-text">Employee ID: 1</p>
-                <p class="card-text"><a href="mailto:"></a></p>
-                <p class="card-text"><a href="#">Github</a></p>
-            </div>
+        <div class="row employeeRow">  
+
         </div>
     </div>
     <script src="index.js"></script>
-  </body>
+    </body>
 </html>
+`
 
 
-    
-    
+}
+
+function addEmployeeCard(role, object) {
+    if(role === 'Manager'){
+        return `
+    <div class="col-md-3 mx-auto card employeeCard border bg-custom">
+        <div class="card-header">
+            <h3>Jared</h3>
+            <h5>Manager  <i class="fas fa-clipboard"></i></h5>
+        </div>
+        <p class="card-text">Employee ID: 1</p>
+        <p class="card-text"><a href="mailto:">jared.weaver2@gmail.com</a></p>
+        <p class="card-text">Office Number: 4</p>
+    </div>
     `
+    }
 
 
 }
