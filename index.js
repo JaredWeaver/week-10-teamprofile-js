@@ -42,7 +42,7 @@ const prompt = () => { inquirer
 
 }
 
-function writeHTML{ 
+function writeHTML(){ 
     return `
     
     <!DOCTYPE html>
