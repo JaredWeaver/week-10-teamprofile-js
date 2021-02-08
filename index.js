@@ -5,11 +5,16 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+const managerHTML = require('./src/managerHTML');
+const engineerHTML = require('./src/engineerHTML');
+const internHTML = require('./src/internHTML');
+const style = require('./src/style');
+
+
 const teamMembersArr=[];
 const teamName= [];
 
-
-
+console.log(internHTML());
 
 const startPrompt = () => { inquirer
 
@@ -198,7 +203,7 @@ function renderHTML(role){
     </header>
     <div class="container-fluid mx-auto">
         <div class="row employeeRow">  
-
+        ${addEmployeeCard()}
         </div>
     </div>
     <script src="index.js"></script>
@@ -209,23 +214,24 @@ function renderHTML(role){
 
 }
 
-function addEmployeeCard(role) {
-    // if(role === 'Manager'){
-    //     return `
-    // <div class="col-md-3 mx-auto card employeeCard border bg-custom">
-    //     <div class="card-header">
-    //         <h3>Jared</h3>
-    //         <h5>Manager  <i class="fas fa-clipboard"></i></h5>
-    //     </div>
-    //     <p class="card-text">Employee ID: 1</p>
-    //     <p class="card-text"><a href="mailto:">jared.weaver2@gmail.com</a></p>
-    //     <p class="card-text">Office Number: 4</p>
-    // </div>
-    // `
-    // }
+function addEmployeeCard() {
+  teamMembersArr.forEach(index => {
+    if(index === 'Manager'){
+      managerHTML()
+    }
 
+    if(index === 'Engineer'){
+      engineerHTML()
+    } 
 
+    if(index === 'Intern'){
+      internHTML();
+    }
+
+  });
 }
+
+
 
 function init(){
     startPrompt();

@@ -1,3 +1,5 @@
+const renderCSS = () => {
+ return `
 body {
     font-family: 'Roboto Slab', serif;
     font-size: 20px;
@@ -28,3 +30,7 @@ body {
       background-color: rgb(15, 39, 28);
       height: 300px;
   }
+`
+}
+
+module.exports = renderCSS;
