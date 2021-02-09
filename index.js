@@ -14,7 +14,6 @@ const style = require('./src/style');
 const teamMembersArr=[];
 const teamName= [];
 
-console.log(internHTML());
 
 const startPrompt = () => { inquirer
 
@@ -60,6 +59,7 @@ const addManager = () => { inquirer
        let newManager;
        newManager = new Manager(name, id, email, officeNumber);
        teamMembersArr.push(newManager);
+       console.log(newManager)
        addEmployee();
 
 
@@ -119,7 +119,7 @@ const addEngineer = () => { inquirer
       },
 
   ]).then(function({name, id, email, github}) {
-     console.log({name, id, email, github});
+    //  console.log({name, id, email, github});
      let newEngineer;
        newEngineer = new Engineer(name, id, email, github);
        teamMembersArr.push(newEngineer);
@@ -158,7 +158,7 @@ const addIntern = () => { inquirer
      let newIntern;
        newIntern = new Intern(name, id, email, school);
        teamMembersArr.push(newIntern);
-     
+       console.log(teamMembersArr)
      addEmployee();
 
   });
@@ -197,13 +197,13 @@ function renderHTML(role){
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-custom">
         <div class="container-fluid">
-          <h1 class="mx-auto display-4">Awesome Company's Team Profiles</h1>
+          <h1 class="mx-auto display-4">${teamName} Team Profiles</h1>
         </div>
       </nav>
     </header>
     <div class="container-fluid mx-auto">
         <div class="row employeeRow">  
-        ${addEmployeeCard()}
+        
         </div>
     </div>
     <script src="index.js"></script>
@@ -213,18 +213,20 @@ function renderHTML(role){
 
 
 }
+ 
 
 function addEmployeeCard() {
-  teamMembersArr.forEach(index => {
-    if(index === 'Manager'){
+  teamMembersArr.forEach(member => {
+    console.log('this one',teamMembersArr[member])
+    if(member === 'Manager'){
       managerHTML()
     }
 
-    if(index === 'Engineer'){
+    if(member === 'Engineer'){
       engineerHTML()
     } 
 
-    if(index === 'Intern'){
+    if(member === 'Intern'){
       internHTML();
     }
 
