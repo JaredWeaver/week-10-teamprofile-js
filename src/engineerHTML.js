@@ -1,7 +1,7 @@
 
 const engineerHTML = (role) => {
     return `
-    <div class="col-md-3 mx-auto card employeeCard border bg-custom">
+    <div class="col-md-3 card employeeCard border bg-custom">
     <div class="card-header">
         <h3>${role.name}</h3>
         <h5>Engineer <i class="fas fa-laptop-code"></i></h5>

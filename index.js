@@ -8,11 +8,11 @@ const Intern = require('./lib/Intern');
 const managerHTML = require('./src/managerHTML');
 const engineerHTML = require('./src/engineerHTML');
 const internHTML = require('./src/internHTML');
-const style = require('./src/style');
-
+const renderHTML = require('./src/renderHTML');
 
 const teamMembersArr=[];
 let teamName = "";
+
 
 
 const startPrompt = () => { inquirer
@@ -90,7 +90,7 @@ const addEmployee = () => { inquirer
     }
     if(addOrEnd.includes('finished')){
      
-      const finishHTML = renderHTML();
+      const finishHTML = renderHTML(teamName, addEmployeeCard());
       console.log(finishHTML)
       fs.writeFileSync('./dist/new.html', finishHTML);
     };
@@ -157,71 +157,17 @@ const addIntern = () => { inquirer
       },
 
   ]).then(function({name, id, email, school}) {
-     console.log({name, id, email, school});
      let newIntern;
        newIntern = new Intern(name, id, email, school);
        teamMembersArr.push(newIntern);
-       console.log(teamMembersArr)
      addEmployee();
 
   });
 
 }
-
-function renderHTML(){ 
-  return `
-    
-   <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./dist/style.css" />
-    <title>Team Profiles</title>
-  </head>
-
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-custom">
-        <div class="container-fluid">
-          <h1 class="mx-auto display-4">${teamName} Team Profiles</h1>
-        </div>
-      </nav>
-    </header>
-    <div class="container-fluid mx-auto">
-    
-        <div class="row employeeRow"> 
-        ${addEmployeeCard()} 
-        </div>
-    </div>
-    <script src="index.js"></script>
-    </body>
-</html>
-`
-
-
-}
  
-
-function addEmployeeCard() {
-  console.log('in addEmployeeCard()',teamMembersArr);
-  console.log(teamMembersArr.Manager)
+const addEmployeeCard = () => {
+ 
   let cards = "";
  teamMembersArr.forEach(member => {
        
@@ -234,16 +180,9 @@ function addEmployeeCard() {
     if(member.getRole() === 'Intern') {
       cards += internHTML(member)
     } 
-
  })
-
-
 return cards;
-
-  
 }
-
-
 
 function init(){
     startPrompt();
