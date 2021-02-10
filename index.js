@@ -25,7 +25,6 @@ const startPrompt = () => { inquirer
     }
   ])
   .then((data) => {
-    console.log(data);
     teamName = data.teamname;
     addManager()
   })
@@ -59,7 +58,6 @@ const addManager = () => { inquirer
        let newManager;
        newManager = new Manager(name, id, email, officeNumber);
        teamMembersArr.push(newManager);
-       console.log(newManager)
        addEmployee();
 
 
@@ -80,7 +78,6 @@ const addEmployee = () => { inquirer
   }
 
   ]).then(function(choices){
-    console.log(choices.addOrEnd)
     const addOrEnd = choices.addOrEnd;
     if(addOrEnd.includes('intern')){
       addIntern()
@@ -91,7 +88,6 @@ const addEmployee = () => { inquirer
     if(addOrEnd.includes('finished')){
      
       const finishHTML = renderHTML(teamName, addEmployeeCard());
-      console.log(finishHTML)
       fs.writeFileSync('./dist/new.html', finishHTML);
     };
   });
@@ -122,7 +118,6 @@ const addEngineer = () => { inquirer
       },
 
   ]).then(function({name, id, email, github}) {
-    //  console.log({name, id, email, github});
      let newEngineer;
        newEngineer = new Engineer(name, id, email, github);
        teamMembersArr.push(newEngineer);
