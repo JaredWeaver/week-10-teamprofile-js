@@ -7,7 +7,7 @@ const engineerHTML = (role) => {
         <h5>Engineer <i class="fas fa-laptop-code"></i></h5>
     </div>
     <p class="card-text">Employee ID: ${role.id}</p>
-    <p class="card-text"><a href="mailto:">Email: ${role.email}</a></p>
+    <p class="card-text"><a href="mailto:">${role.email}</a></p>
     <p class="card-text"><a href="github.com/${role.github}">${role.name}\'s Github</a></p>
 </div>
 `

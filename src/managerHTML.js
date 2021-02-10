@@ -6,7 +6,7 @@ const managerHTML = (role) => {
         <h5>Manager <i class="fas fa-clipboard"></i></h5>
     </div>
     <p class="card-text">Employee ID: ${role.id}</p>
-    <p class="card-text"><a href="mailto:">Email ${role.email}</a></p>
+    <p class="card-text"><a href="mailto:">${role.email}</a></p>
     <p class="card-text">Office Number: ${role.officeNumber}</p>
 </div>
 `

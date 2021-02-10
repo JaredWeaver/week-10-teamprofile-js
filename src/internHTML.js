@@ -9,7 +9,7 @@
     </div>
     <p class="card-text">Employee ID: ${role.id} </p>
     <p class="card-text"><a href="mailto:">${role.email}</a></p>
-    <p class="card-text">School:${role.school}</p>
+    <p class="card-text">${role.school}</p>
   </div>
 `
 }
