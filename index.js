@@ -12,7 +12,7 @@ const style = require('./src/style');
 
 
 const teamMembersArr=[];
-const teamName= [];
+let teamName = "";
 
 
 const startPrompt = () => { inquirer
@@ -26,7 +26,7 @@ const startPrompt = () => { inquirer
   ])
   .then((data) => {
     console.log(data);
-    teamName.push(data.teamname);
+    teamName = data.teamname;
     addManager()
   })
 }
@@ -89,7 +89,10 @@ const addEmployee = () => { inquirer
       addEngineer()
     }
     if(addOrEnd.includes('finished')){
-      console.log(teamMembersArr);
+     
+      const finishHTML = renderHTML();
+      console.log(finishHTML)
+      fs.writeFileSync('./dist/new.html', finishHTML);
     };
   });
 }
@@ -165,8 +168,8 @@ const addIntern = () => { inquirer
 
 }
 
-function renderHTML(role){ 
-   const html = `
+function renderHTML(){ 
+  return `
     
    <!DOCTYPE html>
 <html lang="en">
@@ -189,7 +192,7 @@ function renderHTML(role){
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./dist/style.css" />
     <title>Team Profiles</title>
   </head>
 
@@ -202,8 +205,9 @@ function renderHTML(role){
       </nav>
     </header>
     <div class="container-fluid mx-auto">
-        <div class="row employeeRow">  
-        
+    
+        <div class="row employeeRow"> 
+        ${addEmployeeCard()} 
         </div>
     </div>
     <script src="index.js"></script>
@@ -216,21 +220,27 @@ function renderHTML(role){
  
 
 function addEmployeeCard() {
-  teamMembersArr.forEach(member => {
-    console.log('this one',teamMembersArr[member])
-    if(member === 'Manager'){
-      managerHTML()
-    }
-
-    if(member === 'Engineer'){
-      engineerHTML()
+  console.log('in addEmployeeCard()',teamMembersArr);
+  console.log(teamMembersArr.Manager)
+  let cards = "";
+ teamMembersArr.forEach(member => {
+       
+    if(member.getRole() === 'Manager') {
+       cards += managerHTML(member)
+    } 
+    if(member.getRole() === 'Engineer') {
+      cards += engineerHTML(member)
+    } 
+    if(member.getRole() === 'Intern') {
+      cards += internHTML(member)
     } 
 
-    if(member === 'Intern'){
-      internHTML();
-    }
+ })
 
-  });
+
+return cards;
+
+  
 }
 
 
