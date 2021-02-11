@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const validate = require('./src/validate');
 
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -21,7 +22,8 @@ const startPrompt = () => { inquirer
     {
       type: 'input',
       message: 'Welcome. To begin building your team, what is your team\'s name?',
-      name: 'teamname'
+      name: 'teamname',
+      validate: validate.notEmpty
     }
   ])
   .then((data) => {
@@ -36,22 +38,26 @@ const addManager = () => { inquirer
         {
             type: 'input',
             message: 'What is the manager\'s name?',
-            name:'name'
+            name:'name',
+            validate: validate.notEmpty
         },
         {
             type: 'input',
             message: 'What is the manager\'s employee ID?',
-            name:'id'
+            name:'id',
+            validate: validate.numbersOnly
         },
         {
             type: 'input',
             message: 'What is the manager\'s email address?',
-            name:'email'
+            name:'email',
+            validate: validate.email
         },
         {
             type: 'input',
             message: 'What is the manager\'s office number?',
-            name:'officeNumber'
+            name:'officeNumber',
+            validate: validate.numbersOnly
         },
 
     ]).then(function({name, id, email, officeNumber}) {
@@ -99,22 +105,26 @@ const addEngineer = () => { inquirer
       {
           type: 'input',
           message: 'What is the engineer\'s name?',
-          name:'name'
+          name:'name',
+          validate: validate.notEmpty
       },
       {
           type: 'input',
           message: 'What is the engineer\'s employee ID?',
-          name:'id'
+          name:'id',
+          validate: validate.numbersOnly
       },
       {
           type: 'input',
           message: 'What is the engineer\'s email address?',
-          name:'email'
+          name:'email',
+          validate: validate.email
       },
       {
           type: 'input',
           message: 'What is the engineers\'s Github username?',
-          name:'github'
+          name:'github',
+          validate: validate.notEmpty
       },
 
   ]).then(function({name, id, email, github}) {
@@ -133,22 +143,26 @@ const addIntern = () => { inquirer
       {
           type: 'input',
           message: 'What is the intern\'s name?',
-          name:'name'
+          name:'name',
+          validate: validate.notEmpty
       },
       {
           type: 'input',
           message: 'What is the intern\'s employee ID?',
-          name:'id'
+          name:'id',
+          validate: validate.numbersOnly
       },
       {
           type: 'input',
           message: 'What is the intern\'s email address?',
-          name:'email'
+          name:'email',
+          validate: validate.email
       },
       {
           type: 'input',
           message: 'What school does the intern attend?',
-          name:'school'
+          name:'school',
+          validate: validate.notEmpty
       },
 
   ]).then(function({name, id, email, school}) {
