@@ -5,6 +5,9 @@ This is an application that utilizes inquirer to gather a user's responses to pr
 ![demo-gif](./team-gen-demo.gif)
 
 
+[Demo Video Link](https://youtu.be/jz4fjAeSv0U)
+
+
 
 ## User Story
 
@@ -35,3 +38,30 @@ THEN I am prompted to enter the intern’s name, ID, email, and school, and I am
 WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
 ```
+
+## Installation
+
+To install the proper dependencies, please use the following command:
+
+```
+npm i inquirer
+npm i jest
+```
+
+## Tests
+
+```
+npm run test
+```
+
+## License
+
+This application is protected by the [MIT](https://opensource.org/licenses/MIT) license. 
+
+## Questions
+
+For any questions relating to this application, please reach out to me at the following:
+
+Email: jared.weaver2@gmail.com
+
+Github: [JaredWeaver](github.com/JaredWeaver)
